@@ -1,0 +1,54 @@
+<div ng-controller="ClienteController" class="row">
+    <div class="decoration-head"></div>
+    <div class="resplandor"></div>
+
+
+
+    <div id="logo" class="animated bounceIn"></div>
+    <div id="contenedor-login" class="animated bounceInLeft">
+            <center><h2></h2></center>
+        <form name="frmCliente" id="frmCliente" novalidate>
+            <table width="100%" align="center">
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="email" class="box-text email" name="txtCorreo" id="txtCorreo" placeholder="Email" ng-model="usuario.email" required ng-pattern="/^([\da-zA-Z_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/">
+                        <div class="error" ng-show="frmCliente.txtCorreo.$dirty && frmCliente.txtCorreo.$invalid">
+                           <small  ng-show="frmCliente.txtCorreo.$error.required">Email es Requerido</small>
+                           <small  ng-show="frmCliente.txtCorreo.$error.pattern">Email No Valido</small>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="password" class="box-text pass" name="txtClave" id="txtClave" placeholder="Contraseña" ng-model="usuario.clave" required >
+                        <div class="error" ng-show="frmCliente.txtClave.$dirty && frmCliente.txtClave.$invalid">
+                            <small  ng-show="frmCliente.txtClave.$error.required">Contraseña es Requerida</small>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><div class="error"  style="font-size: 16px; margin-top: 5px;">{{msjError}}</div></td>
+                </tr>
+
+                <tr>
+                    <td><button ng-disabled="frmCliente.$invalid"   class="btn-iniciar  z-depth-1" type="button" title="Iniciar Session"  ng-click="autenticar()">INICIAR SESION</button></td>
+                </tr>
+                <tr>
+                      <td style="height: 60px;"><a class="btn green z-depth-1" href="#/registro" style="display: block; width: auto">REGISTRARME</a></td>
+                </tr>
+
+
+
+                <tr>
+
+                <td><a href="#/recordar" class="min">Olvide mi contraseña</a></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+    <!--<a href="#/login" class="btn-floating btn-large z-depth-1"><i class="material-icons">home</i></a>-->
+</div>
