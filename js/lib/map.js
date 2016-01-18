@@ -49,7 +49,7 @@ function dibujarMarker(map,pos){
       marker.setMap(null);
   }
 
-    marker = new google.maps.Marker({
+marker = new google.maps.Marker({
     position: pos,
     map: map,
     title: 'Mi posicion'
