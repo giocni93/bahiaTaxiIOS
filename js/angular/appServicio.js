@@ -8,6 +8,9 @@ var app;
           .when("/",{
               templateUrl: 'vistas/taxi.html'
           })
+          .when("/direcciones",{
+              templateUrl: 'vistas/direcciones.html'
+          })
           .otherwise({
               redirectTo:"/"
           });

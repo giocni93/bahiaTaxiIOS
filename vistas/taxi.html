@@ -1,9 +1,92 @@
 <div ng-controller="ServicioController" class="row">
-
-  <div class="mapa" id="map"></div>
-  <div class="card white" style="margin: 5px;">
-    <div class="card-content blue-text">
-      <p id="pPosicion">Obteniendo posicion</p>
+  <div id="map" class="mapa"></div>
+  <div ng-show="banServicio == 0" class="card white" style="margin: 5px; position: relative; top: -10px;">
+    <div class="card-content black-text" style="padding: 0; padding-left: 10px;">
+      <div class="input-field">
+        <input name="pPosicion" id="pPosicion" type="text" placeholder="Direccion">
+        <input name="latitud" id="latitud" type="hidden" >
+        <input name="longitud" id="longitud" type="hidden">
+      </div>
+      </div>
     </div>
+    <div ng-show="banServicio == 1" class="card white" style="margin: 5px; position: relative; top: -10px;">
+      <div class="card-content black-text" style="padding: 0; padding-left: 10px;">
+        <div class="input-field">
+          <input style="color: green;" name="pPosicion" id="pPosicion" type="text" value="Solicitado">
+          <img src="images/loading.gif" style="width: 25px; float: right; position: relative; top: -32px; right:10px;" />
+        </div>
+        </div>
+      </div>
+      <div class="row" style="margin: 5px; position: relative; top: -10px;"  ng-show="banServicio == -1 || banServicio > 1">
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="card-content black-text" style="padding: 0; padding-left: 10px;">
+              <div class="row">
+                <div id="divFototaxi" class="col s3 m3 l3">
+                  <img id="fotoTaxi" class="responsive-img circle" src="{{servicio.rutaImg}}">
+                </div>
+                <div class="col s9 m9 l9">
+                  <h6>{{servicio.Nombre}} {{servicio.Apellidos}}</h6>
+                  <p style="font-size: 12px; margin-top: -3px;">Tel: <strong>{{servicio.Telefono}}</strong></p>
+                  <p style="font-size: 12px; margin-top: -5px;">Placa: <strong>{{servicio.placa}}</strong></p>
+                  <p style="font-size: 12px; margin-top: -5px;">Estado: <strong style="color: green;">{{servicio.Estado}}</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  <!-- Modal -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h6 style="text-align: center; font-size: 18px; margin-bottom: 10px;">Informacion adicional</h6>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="" id="descripcion" type="text">
+          <label for="descripcion">Descripcion</label>
+        </div>
+      </div>
+      <p style="margin-bottom: 20px; margin-left: 10px;">
+        <input type="checkbox" id="test5" ng-click="cambiarEstadoBan()" />
+        <label for="test5" style="padding-left: 25px;">Guardar direccion actual</label>
+      </p>
+      <div class="row" ng-show="banTxtNombre">
+        <div class="input-field col s12">
+          <input placeholder="Mi hogar" id="nombre" type="text" >
+          <label for="nombre" class="active">Nombre</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" style="position:relative; top: -40px;">
+      <a ng-click="pedirTaxi()"class=" modal-action waves-effect waves-green btn-flat">Aceptar</a>
+      <a ng-click="cerrarModal()"class=" modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+    </div>
+  </div>
+
+  <!-- Modal Motivos -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h6 style="text-align: center; font-size: 18px; margin-bottom: 10px;">Motivos</h6>
+      <div ng-repeat="motivo in motivos">
+        <p>
+          <input name="group1" type="radio" id="{{motivo.idCancelar}}" />
+          <label for="{{motivo.idCancelar}}">{{motivo.motivo}}</label>
+        </p>
+      </div>
+    </div>
+    <div class="modal-footer" style="position:relative; top: 0px;">
+      <a ng-click="cancelarServicio();"class=" modal-action  waves-effect waves-green btn-flat">Aceptar</a>
+      <a ng-click="cerrarMotivos();" class=" modal-action waves-effect waves-red btn-flat">Volver</a>
+    </div>
+  </div>
+
+
+  <div id="divBoton">
+    <a ng-show="banServicio == 0" ng-click="abrirModal()" class="waves-effect waves-light btn-large" style="width: 100%;">Pedir taxi</a>
+    <a ng-show="banServicio > 0" ng-click="abrirMotivos()" class="waves-effect waves-light btn-large red" style="width: 100%;">Cancelar</a>
+    <a ng-show="banServicio == -1"  class="waves-effect waves-light btn-large red disabled" style="width: 100%;">Cancelar</a>
   </div>
 </div>

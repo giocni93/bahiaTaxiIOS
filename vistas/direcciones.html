@@ -1,0 +1,88 @@
+<div ng-controller="DireccionController" style="height: 100vh;">
+
+  <!-- LOADING -->
+  <div ng-show="banCargando" class="preloader-wrapper small active" style="left: 45%;">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- LISTA DE DIRECCIONES -->
+  <ul class="collection" ng-repeat="dir in direcciones">
+
+      <li class="collection-item avatar" >
+        <div ng-click="abrirModal(dir)">
+        <i class="material-icons circle">location_on</i>
+        <span class="title">{{dir.drNombre}}</span>
+        <p>{{dir.drDireccion}}</p>
+        </div>
+        <a ng-click="borrarDireccion(dir);" class="secondary-content"><i class="material-icons red-text">delete</i></a>
+      </li>
+
+  </ul>
+
+  <div id="divbtnAgregar">
+    <a id="btnAgregar" ng-click="abrirNuevo();" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+  </div>
+
+  <!-- Modal Modificar direccion -->
+  <div id="modal1" class="modal" style="width: 95%;">
+    <div class="modal-content">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="nombre" type="text" ng-model="direccion.drNombre">
+          <label for="nombre" class="active">Nombre</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <input id="direccion" type="text" ng-model="direccion.drDireccion">
+          <label for="direccion" class="active">Direccion</label>
+        </div>
+      </div>
+      <div id="map2" class="mapa2">
+
+      </div>
+    <div class="modal-footer" style="position:relative; top: 0px;">
+      <a ng-click="actualizarDireccion();"class=" modal-action  waves-effect waves-green btn-flat">Aceptar</a>
+      <a class="modal-close modal-action waves-effect waves-red btn-flat">Volver</a>
+    </div>
+  </div>
+
+</div>
